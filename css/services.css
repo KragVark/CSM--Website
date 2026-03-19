@@ -1,0 +1,95 @@
+/* =========================================
+   SERVICES
+========================================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.service-card {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 28px;
+  padding: 28px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+}
+
+.service-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(75,60,240,0.35),
+    rgba(255,122,26,0.22),
+    rgba(0,191,255,0.25)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0,191,255,0.22);
+  box-shadow: 0 22px 44px rgba(0,0,0,0.28);
+  background:
+linear-gradient(
+180deg,
+rgba(255,255,255,0.10),
+rgba(255,255,255,0.05)
+);
+}
+
+.service-card:hover::after {
+  opacity: 1;
+}
+
+.service-number {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  font-weight: 900;
+  color: white;
+  background: linear-gradient(135deg, var(--indigo), var(--deep-sky));
+  transition: transform 0.25s ease;
+}
+
+.service-card:hover .service-number {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.service-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  color: var(--text-soft);
+}
+
+@media (max-width: 1100px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 820px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
