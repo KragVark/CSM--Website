@@ -1,0 +1,263 @@
+/* =========================================
+   WhatsApp Floating Widget
+   Reusable component for all projects
+========================================= */
+
+.wa-widget {
+  --wa-green: #25d366;
+  --wa-green-dark: #1faa52;
+  --wa-black: #111111;
+  --wa-white: #ffffff;
+  --wa-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  --wa-soft-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+  --wa-border: rgba(255, 255, 255, 0.18);
+
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wa-widget.wa-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Floating Button */
+.wa-float-btn {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  border: none;
+  border-radius: 50%;
+  background: var(--wa-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--wa-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.wa-float-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 14px 34px rgba(37, 211, 102, 0.35);
+  background: var(--wa-green-dark);
+}
+
+.wa-float-btn:focus-visible,
+.wa-close-btn:focus-visible,
+.wa-chat-link:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 3px;
+}
+
+/* Pulse */
+.wa-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: waPulse 2.2s infinite;
+  background: rgba(37, 211, 102, 0.22);
+  z-index: 0;
+}
+
+.wa-icon {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  fill: var(--wa-white);
+}
+
+/* Popup */
+.wa-popup {
+  position: absolute;
+  right: 0;
+  bottom: 78px;
+  width: 320px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f7f7f7;
+  box-shadow: var(--wa-soft-shadow);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.98);
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+  pointer-events: none;
+}
+
+.wa-widget.wa-open .wa-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.wa-popup-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #25d366, #1faa52);
+  color: #fff;
+}
+
+.wa-popup-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.wa-popup-icon {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+
+.wa-popup-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.wa-popup-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.wa-popup-subtitle {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0.92;
+}
+
+.wa-close-btn {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.wa-popup-body {
+  padding: 18px 16px 14px;
+  background:
+    radial-gradient(circle at top left, rgba(37, 211, 102, 0.07), transparent 35%),
+    #efeae2;
+}
+
+.wa-message-bubble {
+  max-width: 82%;
+  background: #fff;
+  color: #111;
+  padding: 12px 14px;
+  border-radius: 14px 14px 14px 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.wa-popup-footer {
+  padding: 14px 16px 16px;
+  background: #f7f7f7;
+}
+
+.wa-chat-link {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  background: var(--wa-green);
+  color: #fff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.wa-chat-link:hover {
+  background: var(--wa-green-dark);
+  transform: translateY(-1px);
+}
+
+.wa-chat-link-icon {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+
+.wa-chat-link-text {
+  display: inline-block;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .wa-widget {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .wa-popup {
+    width: min(320px, calc(100vw - 28px));
+    right: 0;
+  }
+
+  .wa-float-btn {
+    width: 58px;
+    height: 58px;
+  }
+
+  .wa-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .wa-widget,
+  .wa-popup,
+  .wa-float-btn,
+  .wa-chat-link,
+  .wa-pulse-ring {
+    transition: none;
+    animation: none;
+  }
+}
+
+@keyframes waPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
